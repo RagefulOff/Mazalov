@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    <p><a href="{{ add_url }}" class="button">Добавить запись</a></p>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <br>
+
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>ID</th>
+                {% for col in columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    {% for col in columns %}
+                        <td>
+                            {% set key = col.lower().replace(' ', '_').replace('и', '').replace('ё', 'e') %}
+                            {% set value = row.get(key) or row.get(col) or '—' %}
+
+                            {% if col == link_field %}
+                                <a href="{{ base_url }}/{{ row.id }}">{{ value }}</a>
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="100%">Нет записей для отображения.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

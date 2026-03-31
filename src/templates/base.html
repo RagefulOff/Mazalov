@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Панель управления Автосервис{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" onclick="history.back(); return false;" class="back-link">Назад</a>
+            <a href="/orders" class="button">Заказы</a>
+            <a href="/clients" class="button">Клиенты</a>
+            <a href="/cars" class="button">Автомобили</a>
+            <a href="/mechanics" class="button">Механики</a>
+            <a href="/parts" class="button">Склад (Запчасти)</a>
+            <a href="/works" class="button">Прайс-лист работ</a>
+            <a href="/login" class="button">Выйти</a>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

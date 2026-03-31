@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <table border="1" cellpadding="6">
+        {% for label, value in fields.items() %}
+            <tr>
+                <td><strong>{{ label }}</strong></td>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    {% block extra_content %}{% endblock %}
+    <br>
+
+    <div style="display: flex; gap: 15px;">
+        <form method="get" action="{{ update_url }}">
+            <button type="submit">Изменить</button>
+        </form>
+        <form method="post" action="{{ delete_url }}" onsubmit="return confirm('Вы уверены, что хотите удалить эту запись?')">
+            <button type="submit">Удалить</button>
+        </form>
+    </div>
+
+    <br>
+    <a href="{{ back_url }}">← Назад к списку</a>
+{% endblock %}

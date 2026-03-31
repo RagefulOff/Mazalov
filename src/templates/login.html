@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Форма авторизации</h1>
+    
+    <form action="/login_submit" method="POST">
+    	<label>Логин:</label><br>
+    	<input type="text" name="login" required>
+    	
+    	<br>
+    	<br>
+        
+        <label>Пароль:</label><br>
+        <input type="password" name="password" required>
+    	
+    	<br>
+    	<br>
+        
+        <button type="submit">Войти</button>
+    </form>
+    
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
